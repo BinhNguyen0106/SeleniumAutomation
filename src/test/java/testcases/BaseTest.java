@@ -1,18 +1,19 @@
 package testcases;
+import common.Constants;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-
-import static common.Constants.driver;
 
 public class BaseTest {
 
     @BeforeTest
     public void setUp(){
-        driver.manage().window().maximize();
+        Constants.DRIVER = new ChromeDriver();
+        Constants.DRIVER.manage().window().maximize();
     }
 
     @AfterTest
     public void tearDown(){
-        driver.quit();
+        Constants.DRIVER.quit();
     }
 }

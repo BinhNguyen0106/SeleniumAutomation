@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class Utilities {
     public static WebElement findElement(By locator){
         try{
-            WebElement element = Constants.driver.findElement(locator);
+            WebElement element = Constants.DRIVER.findElement(locator);
             return element.isDisplayed() ? element : null;
         } catch (NoSuchElementException e){
             return null;

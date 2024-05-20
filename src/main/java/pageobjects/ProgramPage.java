@@ -18,20 +18,20 @@ public class ProgramPage {
     }
 
     public static List<WebElement> getListPrograms(){
-        return Constants.driver.findElements(_programList);
+        return Constants.DRIVER.findElements(_programList);
     }
 
     public static ProgramDetailPage goToDetailPage(String courseName){
         WebElement courseElement = getCourseItemElement(courseName);
-        Actions actions = new Actions(Constants.driver);
+        Actions actions = new Actions(Constants.DRIVER);
         actions.moveToElement(courseElement).build().perform();
         courseElement.click();
-        String oldTab = Constants.driver.getWindowHandle();
+        String oldTab = Constants.DRIVER.getWindowHandle();
 
-        ArrayList<String> newTab = new ArrayList<String>(Constants.driver.getWindowHandles());
+        ArrayList<String> newTab = new ArrayList<String>(Constants.DRIVER.getWindowHandles());
         newTab.remove(oldTab);
 
-        Constants.driver.switchTo().window(newTab.get(0));
+        Constants.DRIVER.switchTo().window(newTab.get(0));
 
         return new ProgramDetailPage();
     }
