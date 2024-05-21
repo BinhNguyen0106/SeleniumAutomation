@@ -11,6 +11,22 @@ public class ProgramPageTest extends BaseTest{
     ProgramDetailPage detailPage;
 
     @Test
+    public void verifyFreeProgramDetailShowedAsExpected(){
+        /*
+         * 1. Go to Coursera Page
+         * 2. Click on Explore button
+         * 3. Go to Take a free course
+         * 4. Select a course in the list
+         * 5. Verify the title of the course is displayed same as title in program page
+         * */
+        String courseName = "Build a free website with WordPress";
+        detailPage = homePage.goToCourseraPage()
+                .goToFreeCoursePage()
+                .goToFreeProgramDetailPage(courseName);
+        Assert.assertEquals(courseName, detailPage.getCourseTitle());
+    }
+
+    @Test
     public void verifyProgramDetailShowAsExpected(){
         /*
          * 1. Go to Coursera Page

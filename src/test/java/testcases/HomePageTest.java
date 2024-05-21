@@ -13,22 +13,13 @@ public class HomePageTest extends BaseTest{
     ProgramPage programPage;
 
     @Test
-    public void verifyProgramListLoadedSuccessfully(){
-        /*
-        * 1. Go to Coursera Page
-        * 2. Click on Explore Program button
-        * 3. Verify List of program loaded successfully
-        * */
-        programPage = homePage.goToCourseraPage()
-                                .goToExploreProgramPage();
-        List<WebElement> programList = programPage.getListPrograms();
-        for (int i = 0; i< programList.size(); i++){
-            Assert.assertTrue(programList.get(i).isDisplayed());
-        }
-    }
-
-    @Test
     public void verifyFreeCourseListLoaded() {
+        /*
+         * 1. Go to Coursera Page
+         * 2. Click on Explore button
+         * 3. Select Take a free course in drop down menu
+         * 3. Verify List of program loaded successfully
+         * */
         String expectedPageTitle = "Build Essential Skills for Free";
         String expectedSearchTitle = "Choose the Free Course That Aligns Best With Your Educational Goals";
         String[] expected = {"Introduction to Microsoft Excel",
@@ -52,4 +43,18 @@ public class HomePageTest extends BaseTest{
         Assert.assertEquals(expectedSearchTitle, programPage.getFreeCourseSearchTitleText());
     }
 
+    @Test
+    public void verifyProgramListLoadedSuccessfully(){
+        /*
+         * 1. Go to Coursera Page
+         * 2. Click on Explore Program button
+         * 3. Verify List of program loaded successfully
+         * */
+        programPage = homePage.goToCourseraPage()
+                .goToExploreProgramPage();
+        List<WebElement> programList = programPage.getListPrograms();
+        for (int i = 0; i< programList.size(); i++){
+            Assert.assertTrue(programList.get(i).isDisplayed());
+        }
+    }
 }

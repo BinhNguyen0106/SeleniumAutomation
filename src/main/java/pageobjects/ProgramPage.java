@@ -16,7 +16,7 @@ public class ProgramPage {
     private final static By _freeCourseSearchTtl = By.xpath("//div[@id = 'search-results-header-wrapper']//span");
     private final static String _freeProgramXpath = "//div[contains(@data-testid, 'product-card-cds')]";
     private final static By _freeProgramList = By.xpath(_freeProgramXpath + "//h3");
-    private final static String _freeProgramCourse = _freeProgramXpath + "//a[h3[text() = '%s']]";
+    private final static String _freeProgramCourse = _freeProgramXpath + "//div[.//h3[text() = '%s']]";
     private final static By _programList = By.xpath("//div[@data-testid = 'product-card-cds']");
     private final static String courseItemXpath = "//div[@data-testid = 'product-card-cds']//a[h3[text() = '%s']]";
 
@@ -73,12 +73,13 @@ public class ProgramPage {
         }
         return programList;
     }
-    public ProgramDetailPage goToFreeProgramDetailPage(){
-        int listItem = Utilities.randomNumber(1, 10);
+    public ProgramDetailPage goToFreeProgramDetailPage(String courseName){
         WebDriverWait wait = new WebDriverWait(Constants.DRIVER, Constants.TIMEOUT);
-        wait.until(ExpectedConditions.elementToBeClickable(this.getFreeProgramList().get(listItem)));
-        Utilities.scrollInToView(this.getFreeProgramList().get(listItem));
-        this.getFreeProgramList().get(listItem).click();
+        wait.until(ExpectedConditions.elementToBeClickable(this.getFreeProgramCourse(courseName)));
+        Utilities.scrollInToView(this.getFreeProgramCourse(courseName));
+        this.getFreeProgramCourse(courseName).click();
+        Utilities.switchToNewTab();
+
         return new ProgramDetailPage();
     }
 }
