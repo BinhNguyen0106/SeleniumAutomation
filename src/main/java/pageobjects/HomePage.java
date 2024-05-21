@@ -18,8 +18,5 @@ public class HomePage extends GeneralPage{
         return new ProgramPage();
     }
 
-    public HomePage goToCourseraPage(){
-        Constants.DRIVER.get(Constants.URL);
-        return new HomePage();
-    }
+
 }
