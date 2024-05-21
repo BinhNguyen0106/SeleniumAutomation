@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class HomePage {
+public class HomePage extends GeneralPage{
     private final By _exploreProgramBtn = By.xpath("//a[@role = 'button' and contains(@href, 'Microsoft')]");
 
     public ProgramPage goToExploreProgramPage(){
