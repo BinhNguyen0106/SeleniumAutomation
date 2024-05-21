@@ -7,13 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public class HomePage extends GeneralPage{
-    private final By _exploreProgramBtn = By.xpath("//a[@role = 'button' and contains(@href, 'Microsoft')]");
+    private final static By _exploreProgramBtn = By.xpath("//a[@role = 'button' and contains(@href, 'Microsoft')]");
 
+    protected static WebElement getExploreProgramBtn(){
+        return Utilities.findElement(_exploreProgramBtn);
+    }
     public ProgramPage goToExploreProgramPage(){
-        WebElement programElement = Utilities.findElement(_exploreProgramBtn);
         Actions actions = new Actions(Constants.DRIVER);
-        actions.moveToElement(programElement).build().perform();
-        programElement.click();
+        actions.moveToElement(this.getExploreProgramBtn()).build().perform();
+        this.getExploreProgramBtn().click();
 
         return new ProgramPage();
     }
