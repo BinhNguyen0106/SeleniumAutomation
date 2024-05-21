@@ -28,15 +28,15 @@ public class ProgramPage {
         return Constants.DRIVER.findElements(_programList);
     }
 
-    protected WebElement getFreePageTitle(){
+    protected static WebElement getFreePageTitle(){
         return Utilities.findElement(_freePageTtl);
     }
 
-    protected WebElement getFreeCourseSearchTitle(){
+    protected static WebElement getFreeCourseSearchTitle(){
         return Utilities.findElement(_freeCourseSearchTtl);
     }
 
-    protected List<WebElement> getFreeProgramList(){
+    protected static List<WebElement> getFreeProgramList(){
         return Utilities.findElements(_freeProgramList);
     }
     protected static WebElement getFreeProgramCourse(String courseName){
@@ -45,15 +45,9 @@ public class ProgramPage {
 
     public static ProgramDetailPage goToDetailPage(String courseName){
         WebElement courseElement = getCourseItemElement(courseName);
-        Actions actions = new Actions(Constants.DRIVER);
-        actions.moveToElement(courseElement).build().perform();
+        Utilities.hoverToElement(courseElement);
         courseElement.click();
-        String oldTab = Constants.DRIVER.getWindowHandle();
-
-        ArrayList<String> newTab = new ArrayList<>(Constants.DRIVER.getWindowHandles());
-        newTab.remove(oldTab);
-
-        Constants.DRIVER.switchTo().window(newTab.get(0));
+        Utilities.switchToNewTab();
 
         return new ProgramDetailPage();
     }
