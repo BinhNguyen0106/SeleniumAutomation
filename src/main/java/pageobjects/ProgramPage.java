@@ -43,7 +43,7 @@ public class ProgramPage {
         return Utilities.findElement(By.xpath(String.format(_freeProgramCourse, courseName)));
     }
 
-    public static ProgramDetailPage goToDetailPage(String courseName){
+    public ProgramDetailPage goToDetailPage(String courseName){
         WebElement courseElement = getCourseItemElement(courseName);
         Utilities.hoverToElement(courseElement);
         courseElement.click();
