@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProgramPage {
+    private final static By _freePageTtl = By.xpath("//div[@data-testid = 'top-content-block']//h2");
+    private final static By _freeCourseSearchTtl = By.xpath("//div[@id = 'search-results-header-wrapper']//span");
+
     private final static By _programList = By.xpath("//div[@data-testid = 'product-card-cds']");
     private final static String courseItemXpath = "//div[@data-testid = 'product-card-cds']//a[h3[text() = '%s']]";
 
@@ -19,6 +22,14 @@ public class ProgramPage {
 
     public static List<WebElement> getListPrograms(){
         return Constants.DRIVER.findElements(_programList);
+    }
+
+    protected WebElement getFreePageTitle(){
+        return Utilities.findElement(_freePageTtl);
+    }
+
+    protected WebElement getFreeCourseSearchTitle(){
+        return Utilities.findElement(_freeCourseSearchTtl);
     }
 
     public static ProgramDetailPage goToDetailPage(String courseName){
@@ -34,5 +45,13 @@ public class ProgramPage {
         Constants.DRIVER.switchTo().window(newTab.get(0));
 
         return new ProgramDetailPage();
+    }
+
+    public String getFreeCourseSearchTitleText(){
+        return this.getFreeCourseSearchTitle().getText();
+    }
+
+    public String getFreePageTitleText(){
+        return this.getFreePageTitle().getText();
     }
 }

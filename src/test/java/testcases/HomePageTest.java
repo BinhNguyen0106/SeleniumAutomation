@@ -11,6 +11,7 @@ import java.util.List;
 public class HomePageTest extends BaseTest{
     HomePage homePage = new HomePage();
     ProgramPage programPage;
+
     @Test
     public void verifyProgramListLoadedSuccessfully(){
         /*
@@ -26,5 +27,14 @@ public class HomePageTest extends BaseTest{
         }
     }
 
+    @Test
+    public void verifyFreeCourseListLoaded() {
+        String expectedPageTitle = "Build Essential Skills for Free";
+        String expectedSearchTitle = "Choose the Free Course That Aligns Best With Your Educational Goals";
+        programPage = homePage.goToCourseraPage().goToFreeCoursePage();
+
+        Assert.assertEquals(expectedPageTitle, programPage.getFreePageTitleText());
+        Assert.assertEquals(expectedSearchTitle, programPage.getFreeCourseSearchTitleText());
+    }
 
 }
