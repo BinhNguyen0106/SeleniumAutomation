@@ -6,6 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -42,6 +43,13 @@ public class Utilities {
     public static void scrollInToView(WebElement element){
         JavascriptExecutor js = (JavascriptExecutor) Constants.DRIVER;
         js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public static void switchToNewTab(){
+        String oldTab = Constants.DRIVER.getWindowHandle();
+        ArrayList<String> newTab = new ArrayList<>(Constants.DRIVER.getWindowHandles());
+        newTab.remove(oldTab);
+        Constants.DRIVER.switchTo().window(newTab.get(0));
     }
 
 }
